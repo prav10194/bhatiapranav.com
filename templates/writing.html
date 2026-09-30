@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}writing · pranav bhatia{% endblock %}
+{% block description %}articles by pranav bhatia on omnistudio, graph problems and local-first ai.{% endblock %}
+
+{% block content %}
+  <section class="intro">
+    <h1 class="page-title">writing</h1>
+    <p class="sub">articles on medium, mostly the kind i wished existed when i was stuck. a learning log from the ai work starts here soon.</p>
+  </section>
+
+  {% for year, posts in years %}
+    <section>
+      <h2 class="label">{{ year }}{% if posts[0].series %} · a {{ posts[0].series }} series{% endif %}</h2>
+      <ul class="list">
+        {% for post in posts %}
+          <li class="entry">
+            <span class="entry-date">{{ post.date | pretty_date }}</span>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+
+  <p class="more"><a href="{{ c.MEDIUM_URL }}">all of it on medium &rarr;</a></p>
+{% endblock %}

@@ -1,0 +1,245 @@
+/* bhatiapranav.com — design tokens from SITE-BLUEPRINT.md §4.
+   Single dark theme, deliberately. One accent; swap --accent to restyle. */
+
+:root {
+  --bg:        #0a0a0a;
+  --text:      #e4e4e7;
+  --text-2:    #a1a1aa;
+  --muted:     #8a8a93;
+  --faint:     #5b5b63;
+  --rule:      #27272a;
+  --link-rule: #3f3f46;
+  --accent:    #4ade80;   /* alternatives tried: #60a5fa #f59e0b */
+
+  --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --col: 640px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.column {
+  width: 100%;
+  max-width: var(--col);
+  margin: 0 auto;
+  padding: 96px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+/* --- links ---------------------------------------------------------------- */
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--link-rule);
+  transition: border-color 120ms ease, color 120ms ease;
+}
+a:hover { border-bottom-color: var(--text); }
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- nav ------------------------------------------------------------------ */
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.nav-link { color: var(--muted); border-bottom: none; }
+.nav-link:hover { color: var(--text); }
+.nav-link.is-current { color: var(--text); }
+.key { color: var(--faint); }
+
+/* --- structure ------------------------------------------------------------ */
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+section { display: flex; flex-direction: column; gap: 12px; }
+section.intro { gap: 14px; }
+
+p { margin: 0; }
+
+.page-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.lead {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.sub { color: var(--text-2); text-wrap: pretty; }
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+/* --- row lists (projects, timeline, lab) ---------------------------------- */
+
+.rows, .list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 13px 0;
+  border-top: 1px solid var(--rule);
+}
+.rows .row:last-child { border-bottom: 1px solid var(--rule); }
+
+.row-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+.row-title { font-weight: 500; border-bottom: none; }
+a.row-title:hover { color: var(--accent); }
+
+.row-sub {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.row-sub strong { color: var(--text); font-weight: 500; }
+
+.row-meta {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+  white-space: nowrap;
+  flex: none;
+}
+.row-meta.is-accent { color: var(--accent); }
+
+.row.is-dim .row-title { color: var(--text-2); }
+.row.is-dim .row-meta  { color: var(--faint); }
+
+.row.is-timeline { gap: 24px; }
+.years {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  width: 88px;
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+.years.is-accent { color: var(--accent); }
+
+/* --- entry lists (writing) ------------------------------------------------ */
+
+.entry {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  padding: 5px 0;
+}
+.entry-date {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  width: 76px;
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.more { font-size: 15px; }
+.more a { color: var(--muted); border-bottom: none; }
+.more a:hover { color: var(--text); }
+
+/* --- contact & footer ----------------------------------------------------- */
+
+.contact {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 14px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--faint);
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+
+/* --- phone ---------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .column { padding-top: 56px; gap: 40px; }
+  main { gap: 40px; }
+  .lead { font-size: 18px; }
+  .row { flex-direction: column; gap: 6px; }
+  .row-meta { text-align: left; white-space: normal; }
+  .row.is-timeline { flex-direction: row; gap: 16px; }
+  .years { width: 72px; }
+  .entry { flex-direction: column; gap: 2px; }
+  .entry-date { width: auto; }
+  .key { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

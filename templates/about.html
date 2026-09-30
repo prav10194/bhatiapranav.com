@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}about · pranav bhatia{% endblock %}
+{% block description %}nine years of enterprise engineering — conversational ai, secdevops on openshift, and large public-sector web platforms.{% endblock %}
+
+{% block content %}
+  <section class="intro">
+    <h1 class="page-title">about</h1>
+    <p>{{ c.ABOUT_LEAD }}</p>
+    <p class="sub">{{ c.ABOUT_SUB }}</p>
+  </section>
+
+  <section>
+    <h2 class="label">timeline</h2>
+    <ul class="rows">
+      {% for item in c.TIMELINE %}
+        <li class="row is-timeline{% if item.muted %} is-dim{% endif %}">
+          <span class="years{% if item.current %} is-accent{% endif %}">{{ item.years }}</span>
+          <p class="row-sub"><strong>{{ item.title }}</strong> {{ item.text }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">hackathons</h2>
+    <ul class="rows">
+      {% for h in c.HACKATHONS %}
+        <li class="row is-timeline">
+          <span class="years">{{ h.year }}</span>
+          <p class="row-sub"><strong>{{ h.name }}.</strong> {{ h.text }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">education</h2>
+    <p class="sub">{{ c.EDUCATION }}</p>
+  </section>
+
+  <section>
+    <h2 class="label">certifications</h2>
+    <p class="sub">{{ c.CERTIFICATIONS }}</p>
+  </section>
+
+  <section class="contact">
+    <a href="mailto:{{ c.EMAIL }}">{{ c.EMAIL }}</a>
+    {% for link in c.LINKS %}
+      <a href="{{ link.url }}">{{ link.label }}</a>
+    {% endfor %}
+  </section>
+{% endblock %}

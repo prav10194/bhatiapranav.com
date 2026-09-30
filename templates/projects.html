@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}projects · pranav bhatia{% endblock %}
+{% block description %}things pranav bhatia has built — ios, python, ci/cd and nlp projects, with honest status.{% endblock %}
+
+{% block content %}
+  <section class="intro">
+    <h1 class="page-title">projects</h1>
+    <p class="sub">things i've built. the status is honest — some of this is from 2016, and it says so.</p>
+  </section>
+
+  {% for status, items in grouped %}
+    <section>
+      <h2 class="label">
+        {% if status == 'shipping' %}<span class="dot" aria-hidden="true"></span>{% endif %}{{ status }}
+      </h2>
+      <ul class="rows">
+        {% for p in items %}
+          <li class="row{% if status == 'archived' %} is-dim{% endif %}">
+            <div class="row-main">
+              <a href="{{ p.url }}" class="row-title">{{ p.name }}</a>
+              <p class="row-sub">{{ p.blurb }}</p>
+            </div>
+            <p class="row-meta">{% for m in p.meta %}{{ m }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+
+  <p class="more"><a href="https://github.com/prav10194">everything else on github &rarr;</a></p>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}lab · pranav bhatia{% endblock %}
+{% block description %}experiments, side projects and write-ups that don't belong anywhere else.{% endblock %}
+
+{% block content %}
+  <section class="intro">
+    <h1 class="page-title">lab</h1>
+    <p class="sub">experiments, half-finished things, and write-ups that don't belong on the other pages.</p>
+  </section>
+
+  <section>
+    <ul class="rows">
+      {% for item in c.LAB %}
+        <li class="row">
+          <div class="row-main">
+            {% if item.url %}
+              <a href="{{ item.url }}" class="row-title">{{ item.name }}</a>
+            {% else %}
+              <span class="row-title">{{ item.name }}</span>
+            {% endif %}
+            <p class="row-sub">{{ item.text }}</p>
+          </div>
+          <p class="row-meta is-accent">{{ item.status }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}
