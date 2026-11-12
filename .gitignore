@@ -5,3 +5,6 @@ __pycache__/
 .env
 .DS_Store
 .sf/
+node_modules/
+.firebase/
+preview_build/

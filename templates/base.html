@@ -7,12 +7,16 @@
   <meta name="description" content="{% block description %}pranav bhatia — senior software engineer in dallas, texas.{% endblock %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=JetBrains+Mono:wght@400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%234ade80'>▍</text></svg>">
+  <link rel="icon" id="favicon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='6.5' fill='%23ffffff'/></svg>">
 </head>
 <body>
-  <div class="column">
+  <div class="masthead">
+    <div class="topbar">
+      <p class="ident"><span class="me" data-cat-perch>pranav bhatia</span> · {{ c.LOCATION }} ·
+        <time class="clock" data-clock>--:--</time></p>
+    </div>
 
     <nav aria-label="main">
       {% for endpoint, label, key in nav %}
@@ -22,6 +26,9 @@
            {% if request.endpoint == endpoint %}aria-current="page"{% endif %}>{{ label }} <span class="key">[{{ key }}]</span></a>
       {% endfor %}
     </nav>
+  </div>
+
+  <div class="column">
 
     <main>
       {% block content %}{% endblock %}
@@ -29,10 +36,16 @@
 
     <footer>
       <span>&copy; {{ c.YEAR }} pranav bhatia</span>
-      <span>{{ c.LOCATION }}</span>
+      <span data-cat-perch>{{ c.LOCATION }}</span>
     </footer>
 
   </div>
   <script src="{{ url_for('static', filename='keys.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='clock.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='presence.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='covers.js') }}" defer></script>
+  <!-- oneko.js by adryd (MIT) — patched: asleep until clicked. static/oneko-LICENSE -->
+  <script src="{{ url_for('static', filename='oneko.js') }}"
+          data-cat="{{ url_for('static', filename='oneko.gif') }}" defer></script>
 </body>
 </html>

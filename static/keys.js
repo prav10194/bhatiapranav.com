@@ -1,4 +1,4 @@
-// Keyboard nav: press h / p / w / a / l to move between pages.
+// Keyboard nav: each nav link declares its own letter via data-key.
 // Ignores keystrokes while typing, and anything with a modifier held.
 (function () {
   var links = {};

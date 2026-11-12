@@ -8,9 +8,8 @@ NOW = (
 )
 
 INTRO_LEAD = (
-    "i'm a senior software engineer at ibm. i build enterprise web platforms "
-    "in typescript, react and java, and i live somewhere between a terminal "
-    "and a ci pipeline."
+    "i'm a senior software engineer at ibm in dallas. i build enterprise web "
+    "platforms in typescript, react and java."
 )
 
 INTRO_SUB = (
@@ -106,25 +105,49 @@ STATUS_ORDER = ["shipping", "maintained", "archived"]
 WRITING = [
     {"date": "2025-09-09", "title": "postmessage in salesforce omniscript",
      "url": "https://prav10194.medium.com/postmessage-in-salesforce-omniscript-983eed0452a0"},
-    {"date": "2025-07-19", "title": "using a data mapper extract in omniscript with a dynamic filter",
+    {"date": "2025-07-19", "title": "a data mapper extract in omniscript with a dynamic filter",
      "url": "https://prav10194.medium.com/using-a-data-mapper-extract-in-omniscript-with-a-dynamic-filter-fc59a463e0a3"},
     {"date": "2025-07-17", "title": "omniscript: set values for a child key within a json object",
      "url": "https://prav10194.medium.com/omniscript-using-set-values-for-child-key-within-a-json-object-d47032ad830e"},
-    {"date": "2024-10-05", "title": "#684 redundant connections",
-     "url": "https://prav10194.medium.com/lt-684-redundant-connections-04d3e53152a7", "series": "graph problems"},
-    {"date": "2024-10-01", "title": "#127 word ladder",
-     "url": "https://prav10194.medium.com/lt-127-word-ladder-205b11485f22", "series": "graph problems"},
-    {"date": "2024-09-29", "title": "#261 graph valid tree",
-     "url": "https://prav10194.medium.com/lt-261-graph-valid-tree-c6f592c0535e", "series": "graph problems"},
-    {"date": "2024-09-27", "title": "#130 surrounded regions",
-     "url": "https://prav10194.medium.com/lt-130-surrounded-regions-dfcd99bafd54", "series": "graph problems"},
-    {"date": "2024-09-25", "title": "#417 pacific atlantic water flow",
-     "url": "https://prav10194.medium.com/lt-417-pacific-atlantic-water-flow-b29299315135", "series": "graph problems"},
-    {"date": "2024-09-24", "title": "#994 rotting oranges",
-     "url": "https://prav10194.medium.com/lt-994-rotting-oranges-92534c00f95d", "series": "graph problems"},
-    {"date": "2024-09-21", "title": "#286 walls and gates",
-     "url": "https://prav10194.medium.com/lt-286-walls-and-gates-b59f2dbf0054", "series": "graph problems"},
+    {"date": "2024-03-13", "title": "deleting a record type that chatter profiles still hold on to",
+     "url": "https://prav10194.medium.com/delete-record-type-connected-to-chatter-profiles-b92865903b2f"},
+    {"date": "2024-01-19", "title": "passing information from omniscript to a flexcard",
+     "url": "https://prav10194.medium.com/passing-information-from-omniscript-to-flexcard-064097afe53a"},
+    {"date": "2021-09-09", "title": "a python package that runs straight from the terminal",
+     "url": "https://prav10194.medium.com/creating-a-python-package-that-can-run-directly-from-terminal-35933f3a61b3"},
+    {"date": "2021-09-09", "title": "a custom lightning data table in lwc",
+     "url": "https://prav10194.medium.com/creating-a-custom-lightning-data-table-in-lwc-517bc4637d8e"},
+    {"date": "2021-08-19", "title": "setting up kubernetes with jenkins on red hat openshift",
+     "url": "https://prav10194.medium.com/setting-up-kubernetes-with-jenkins-466c51713cc0"},
+    {"date": "2021-06-30", "title": "connecting an omniscript with lwc",
+     "url": "https://prav10194.medium.com/connecting-your-omniscript-with-lwc-1fd8374c5b15"},
+    {"date": "2021-02-16", "title": "analysing a node project in sonarqube with tekton pipelines",
+     "url": "https://prav10194.medium.com/analyzing-your-node-project-in-sonarqube-using-tekton-pipelines-on-ibm-cloud-bd006bf7cfa2"},
+    {"date": "2019-05-06", "title": "watson assistant v2 \u2014 handling context variables",
+     "url": "https://prav10194.medium.com/watson-assistant-v2-context-sharing-3ca18626ed0d"},
+    {"date": "2018-09-10", "title": "keeping conversation context in an alexa skill",
+     "url": "https://prav10194.medium.com/keep-conversation-context-in-alexa-skill-edd8ab8002fa"},
+    {"date": "2017-12-29", "title": "integrating alexa with the watson weather service",
+     "url": "https://prav10194.medium.com/integrating-alexa-with-watson-weather-service-18b482b2a637"},
 ]
+
+# "cover" is a file in static/covers/ and always wins. Without one the page
+# asks openlibrary for the jacket by isbn, and falls back to a blank block.
+BOOKS = [
+    {"title": "the big short", "author": "michael lewis", "meta": "2010",
+     "status": "reading", "isbn": "9780393338829", "cover": "", "line": ""},
+    {"title": "breasts and eggs", "author": "mieko kawakami",
+     "meta": "tr. sam bett & david boyd", "status": "reading",
+     "isbn": "9781609456702", "cover": "", "line": ""},
+    {"title": "kafka on the shore", "author": "haruki murakami",
+     "meta": "tr. philip gabriel", "status": "read",
+     "isbn": "9781400079278", "cover": "", "line": ""},
+    {"title": "what you are looking for is in the library",
+     "author": "michiko aoyama", "meta": "tr. alison watts", "status": "read",
+     "isbn": "9781804994139", "cover": "", "line": ""},
+]
+
+BOOK_STATUS_ORDER = ["reading", "read"]
 
 MEDIUM_URL = "https://prav10194.medium.com"
 
@@ -186,6 +209,25 @@ LAB = [
 ]
 
 # --- identity --------------------------------------------------------------
+# --- resume ----------------------------------------------------------------
+# Drop the pdf in static/ and put its filename here to show the download link.
+RESUME_PDF = ""
+
+RESUME_LEAD = (
+    "nine years at ibm, across three cities and three eras of the work: "
+    "conversational ai, then secdevops, now large public-sector web platforms "
+    "with agentic ai pilots bolted to the side of them."
+)
+
+SKILLS = [
+    ("languages", "typescript · javascript · python · java · apex · sql"),
+    ("front end", "react · lightning web components · node · omnistudio"),
+    ("platform", "salesforce · mulesoft · red hat openshift · docker · kubernetes"),
+    ("ci / cd", "jenkins · tekton · github actions · sonarqube"),
+    ("cloud", "aws · ibm cloud · google cloud · firebase"),
+    ("ai", "watson assistant · langchain · ollama · retrieval + tool calling"),
+]
+
 EMAIL = "pranav@bhatiapranav.com"
 LINKS = [
     {"label": "github", "url": "https://github.com/prav10194"},

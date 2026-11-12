@@ -11,7 +11,8 @@
   {% for status, items in grouped %}
     <section>
       <h2 class="label">
-        {% if status == 'shipping' %}<span class="dot" aria-hidden="true"></span>{% endif %}{{ status }}
+        {% if status == 'shipping' %}<span class="dot" aria-hidden="true"></span>
+        {% elif status == 'maintained' %}<span class="dot is-done" aria-hidden="true"></span>{% endif %}{{ status }}
       </h2>
       <ul class="rows">
         {% for p in items %}

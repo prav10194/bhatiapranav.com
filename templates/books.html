@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}books — pranav bhatia{% endblock %}
+{% block description %}what pranav bhatia is reading, what he has finished, and the lines he kept.{% endblock %}
+
+{% block content %}
+  <section class="intro">
+    <h1 class="page-title">books</h1>
+    <p class="sub">what i'm in the middle of, what i've finished, and the lines i went back and underlined.</p>
+  </section>
+
+  {% for status, items in grouped %}
+    <section>
+      <h2 class="label">
+        {% if status == 'reading' %}<span class="dot" aria-hidden="true"></span>
+        {% else %}<span class="dot is-done" aria-hidden="true"></span>{% endif %}
+        {{ 'reading now' if status == 'reading' else status }}
+      </h2>
+      <div class="shelf">
+        {% for book in items %}
+          <article class="book">
+            {% if book.cover %}
+              <img class="cover" src="{{ url_for('static', filename=book.cover) }}"
+                   alt="cover of {{ book.title }}" width="96" height="144">
+            {% elif book.isbn %}
+              <img class="cover" loading="lazy" width="96" height="144"
+                   src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg?default=false"
+                   alt="cover of {{ book.title }}">
+            {% else %}
+              <div class="cover cover-blank" aria-hidden="true"></div>
+            {% endif %}
+            <div class="book-body">
+              <div class="book-head">
+                <div>
+                  <h2 class="book-title">{{ book.title }}</h2>
+                  <p class="book-author">{{ book.author }}{% if book.meta %} · {{ book.meta }}{% endif %}</p>
+                </div>
+                <span class="status status-{{ status }}">{{ status }}</span>
+              </div>
+              {% if book.line %}
+                <blockquote class="kept">{{ book.line }}</blockquote>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+{% endblock %}

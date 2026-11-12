@@ -18,7 +18,7 @@ BUILD = Path(__file__).parent / "build"
 
 app.config["FREEZER_DESTINATION"] = str(BUILD)
 app.config["FREEZER_REMOVE_EXTRA_FILES"] = True
-app.config["FREEZER_STATIC_IGNORE"] = ["*.map", ".*"]
+app.config["FREEZER_STATIC_IGNORE"] = ["*.map", ".DS_Store"]
 
 freezer = Freezer(app)
 

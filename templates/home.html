@@ -2,48 +2,13 @@
 
 {% block content %}
   <section class="intro">
-    <p class="eyebrow">pranav bhatia · {{ c.LOCATION }}</p>
     <p class="lead">{{ c.INTRO_LEAD }}</p>
     <p class="sub">{{ c.INTRO_SUB }}</p>
   </section>
 
-  <section>
-    <h2 class="label"><span class="dot" aria-hidden="true"></span>now</h2>
-    <p>{{ c.NOW }}</p>
-  </section>
-
-  <section>
-    <h2 class="label">selected</h2>
-    <ul class="rows">
-      {% for p in featured %}
-        <li class="row">
-          <div class="row-main">
-            <a href="{{ p.url }}" class="row-title">{{ p.name }}</a>
-            <p class="row-sub">{{ p.short }}</p>
-          </div>
-          <p class="row-meta{% if p.status == 'shipping' %} is-accent{% endif %}">{{ p.meta | join(' · ') }}</p>
-        </li>
-      {% endfor %}
-    </ul>
-    <p class="more"><a href="{{ url_for('projects') }}">all projects &rarr;</a></p>
-  </section>
-
-  <section>
-    <h2 class="label">latest writing</h2>
-    <ul class="list">
-      {% for post in latest %}
-        <li class="entry">
-          <span class="entry-date">{{ post.date[:7] }}</span>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-    <p class="more"><a href="{{ url_for('writing') }}">all writing &rarr;</a></p>
-  </section>
-
   <section class="contact">
     <a href="mailto:{{ c.EMAIL }}">{{ c.EMAIL }}</a>
-    {% for link in c.LINKS if link.label != 'medium' %}
+    {% for link in c.LINKS %}
       <a href="{{ link.url }}">{{ link.label }}</a>
     {% endfor %}
   </section>

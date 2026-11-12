@@ -1,5 +1,7 @@
 /* bhatiapranav.com — design tokens from SITE-BLUEPRINT.md §4.
-   Single dark theme, deliberately. One accent; swap --accent to restyle. */
+   Single dark theme, deliberately. Two accents, each with one job:
+     --accent    green — live right now: reading, shipping, the current role
+     --accent-2  blue  — finished, or something you can act on (links, focus) */
 
 :root {
   --bg:        #0a0a0a;
@@ -9,12 +11,14 @@
   --faint:     #5b5b63;
   --rule:      #27272a;
   --link-rule: #3f3f46;
-  --accent:    #4ade80;   /* alternatives tried: #60a5fa #f59e0b */
+  --accent:    #4ade80;   /* live */
+  --accent-2:  #60a5fa;   /* done, and interactive */
 
   --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --col: 640px;
+  --col:  640px;
+  --rail: 760px;   /* the masthead runs a little wider than the text */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -35,7 +39,7 @@ body {
   width: 100%;
   max-width: var(--col);
   margin: 0 auto;
-  padding: 96px 20px 80px;
+  padding: 44px 20px 80px;
   display: flex;
   flex-direction: column;
   gap: 52px;
@@ -49,9 +53,9 @@ a {
   border-bottom: 1px solid var(--link-rule);
   transition: border-color 120ms ease, color 120ms ease;
 }
-a:hover { border-bottom-color: var(--text); }
+a:hover { color: var(--accent-2); border-bottom-color: var(--accent-2); }
 a:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-2);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -61,14 +65,19 @@ a:focus-visible {
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 10px 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
   font-family: var(--mono);
   font-size: 13px;
 }
 .nav-link { color: var(--muted); border-bottom: none; }
-.nav-link:hover { color: var(--text); }
+.nav-link:hover { color: var(--text); border-bottom-color: transparent; }
 .nav-link.is-current { color: var(--text); }
+
 .key { color: var(--faint); }
+.nav-link:hover .key { color: var(--accent-2); }
+.nav-link.is-current .key { color: var(--muted); }
 
 /* --- structure ------------------------------------------------------------ */
 
@@ -90,10 +99,50 @@ p { margin: 0; }
   line-height: 1.4;
 }
 
-.eyebrow {
+/* --- masthead: a rail wider than the text column, tabs left, name right --- */
+
+.masthead {
+  width: 100%;
+  max-width: var(--rail);
+  margin: 0 auto;
+  padding: 80px 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 24px;
+  flex-wrap: wrap;
+}
+
+
+.ident {
+  margin: 0;
+  margin-left: auto;
   font-family: var(--mono);
-  font-size: 13px;
-  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.ident .me {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.clock {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+#oneko:focus-visible {
+  outline: 1px solid var(--accent-2);
+  outline-offset: 3px;
 }
 
 .lead {
@@ -123,6 +172,7 @@ p { margin: 0; }
   background: var(--accent);
   flex: none;
 }
+.dot.is-done { background: var(--accent-2); }
 
 /* --- row lists (projects, timeline, lab) ---------------------------------- */
 
@@ -147,7 +197,7 @@ p { margin: 0; }
 .row-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 
 .row-title { font-weight: 500; border-bottom: none; }
-a.row-title:hover { color: var(--accent); }
+a.row-title:hover { color: var(--accent-2); }
 
 .row-sub {
   color: var(--muted);
@@ -166,6 +216,7 @@ a.row-title:hover { color: var(--accent); }
   flex: none;
 }
 .row-meta.is-accent { color: var(--accent); }
+.row-meta.is-accent-2 { color: var(--accent-2); }
 
 .row.is-dim .row-title { color: var(--text-2); }
 .row.is-dim .row-meta  { color: var(--faint); }
@@ -242,4 +293,90 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+}
+
+/* --- books ---------------------------------------------------------------- */
+
+.shelf {
+  display: flex;
+  flex-direction: column;
+}
+
+.book {
+  display: flex;
+  gap: 22px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+}
+.shelf .book:last-child { border-bottom: 1px solid var(--rule); }
+
+.cover {
+  width: 96px;
+  height: 144px;
+  flex: none;
+  border-radius: 3px;
+  object-fit: cover;
+  background: #141417;
+  border: 1px solid #2b2b31;
+  border-left-width: 4px;
+}
+
+/* no jacket yet: the block and its spine stand in for one */
+.cover-blank { background: #121215; }
+
+.book-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.book-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.book-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.book-author {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.status {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  flex: none;
+}
+.status-reading { color: var(--accent); }
+.status-read    { color: var(--accent-2); }
+
+.kept {
+  margin: 0;
+  padding: 2px 0 2px 16px;
+  border-left: 1px solid var(--link-rule);
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+@media (max-width: 520px) {
+  .book { gap: 16px; }
+  .cover { width: 72px; height: 108px; }
+}
+
+@media (max-width: 800px) {
+  .masthead { max-width: var(--col); }
 }

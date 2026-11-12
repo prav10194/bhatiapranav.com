@@ -22,14 +22,15 @@ def inject_globals():
             ("writing", "writing", "w"),
             ("about", "about", "a"),
             ("lab", "lab", "l"),
+            ("books", "books", "b"),
+            ("resume", "resume", "r"),
         ],
     }
 
 
 @app.route("/")
 def home():
-    featured = [p for p in content.PROJECTS if p.get("featured")]
-    return render_template("home.html", featured=featured, latest=content.WRITING[:2])
+    return render_template("home.html")
 
 
 @app.route("/projects/")
@@ -59,6 +60,21 @@ def about():
 @app.route("/lab/")
 def lab():
     return render_template("lab.html")
+
+
+@app.route("/books/")
+def books():
+    grouped = [
+        (status, [b for b in content.BOOKS if b["status"] == status])
+        for status in content.BOOK_STATUS_ORDER
+    ]
+    grouped = [(status, items) for status, items in grouped if items]
+    return render_template("books.html", grouped=grouped)
+
+
+@app.route("/resume/")
+def resume():
+    return render_template("resume.html")
 
 
 @app.template_filter("pretty_date")

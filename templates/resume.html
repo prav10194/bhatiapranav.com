@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}resume · pranav bhatia{% endblock %}
+{% block description %}pranav bhatia — senior software engineer at ibm in dallas. nine years of web platforms, secdevops and conversational ai.{% endblock %}
+
+{% block content %}
+  <section class="intro">
+    <h1 class="page-title">resume</h1>
+    <p class="sub">{{ c.RESUME_LEAD }}</p>
+    {% if c.RESUME_PDF %}
+      <p class="more"><a href="{{ url_for('static', filename=c.RESUME_PDF) }}" download>download as pdf →</a></p>
+    {% endif %}
+  </section>
+
+  <section>
+    <h2 class="label">experience</h2>
+    <ul class="rows">
+      {% for item in c.TIMELINE if item.years != '2014' and 'ms computer science' not in item.title %}
+        <li class="row is-timeline">
+          <span class="years{% if item.current %} is-accent{% endif %}">{{ item.years }}</span>
+          <p class="row-sub"><strong>{{ item.title }}</strong> {{ item.text }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">what i work with</h2>
+    <ul class="rows">
+      {% for name, items in c.SKILLS %}
+        <li class="row is-timeline">
+          <span class="years">{{ name }}</span>
+          <p class="row-sub">{{ items }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">selected work</h2>
+    <ul class="rows">
+      {% for h in c.HACKATHONS %}
+        <li class="row is-timeline">
+          <span class="years">{{ h.year }}</span>
+          <p class="row-sub"><strong>{{ h.name }}.</strong> {{ h.text }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">education</h2>
+    <p class="sub">{{ c.EDUCATION }} · 2016 – 18</p>
+  </section>
+
+  <section>
+    <h2 class="label">certifications</h2>
+    <p class="sub">{{ c.CERTIFICATIONS }}</p>
+  </section>
+
+  <section class="contact">
+    <a href="mailto:{{ c.EMAIL }}">{{ c.EMAIL }}</a>
+    {% for link in c.LINKS %}
+      <a href="{{ link.url }}">{{ link.label }}</a>
+    {% endfor %}
+  </section>
+{% endblock %}
