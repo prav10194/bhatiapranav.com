@@ -4,10 +4,9 @@ Nothing here runs in production: `python freeze.py` renders every route to
 plain HTML in build/, and that folder is what gets deployed.
 """
 
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 
-from data import content
-
+from data import content, log
 app = Flask(__name__)
 
 
@@ -49,8 +48,15 @@ def writing():
     for post in content.WRITING:
         by_year.setdefault(post["date"][:4], []).append(post)
     years = sorted(by_year.items(), reverse=True)
-    return render_template("writing.html", years=years)
+    return render_template("writing.html", years=years,
+                           log_posts=log.load_posts())
 
+@app.route("/writing/<slug>/")
+def post(slug):
+    match = next((p for p in log.load_posts() if p["slug"] == slug), None)
+    if match is None:
+        abort(404)
+    return render_template("post.html", post=match)
 
 @app.route("/about/")
 def about():

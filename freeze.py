@@ -13,6 +13,7 @@ from pathlib import Path
 from flask_frozen import Freezer
 
 from app import app
+from data.log import load_posts
 
 BUILD = Path(__file__).parent / "build"
 
@@ -21,6 +22,14 @@ app.config["FREEZER_REMOVE_EXTRA_FILES"] = True
 app.config["FREEZER_STATIC_IGNORE"] = ["*.map", ".DS_Store"]
 
 freezer = Freezer(app)
+
+
+@freezer.register_generator
+def post():
+    """Frozen-Flask walks the URL map but cannot invent slugs for
+    /writing/<slug>/, so hand it one set of arguments per log post."""
+    for entry in load_posts():
+        yield {"slug": entry["slug"]}
 
 
 def size_of(path):

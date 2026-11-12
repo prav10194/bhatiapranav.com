@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} · pranav bhatia{% endblock %}
+{% block description %}{{ post.summary }}{% endblock %}
+
+{% block content %}
+  <section class="intro">
+    <p class="label">{{ post.date | pretty_date }} {{ post.date[:4] }}</p>
+    <h1 class="page-title">{{ post.title }}</h1>
+    <p class="sub">{{ post.summary }}</p>
+  </section>
+
+  <article class="prose">
+    {{ post.html | safe }}
+  </article>
+
+  <p class="more"><a href="{{ url_for('writing') }}">&larr; all writing</a></p>
+{% endblock %}

@@ -8,6 +8,20 @@
     <p class="sub">articles on medium about the things i have worked on: alexa and watson, then ci/cd and containers, and salesforce platform work now.</p>
   </section>
 
+  {% if log_posts %}
+    <section>
+      <h2 class="label">learning log</h2>
+      <ul class="list">
+        {% for entry in log_posts %}
+          <li class="entry">
+            <span class="entry-date">{{ entry.date | pretty_date }}</span>
+            <a href="{{ url_for('post', slug=entry.slug) }}">{{ entry.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
   {% for year, posts in years %}
     <section>
       <h2 class="label">{{ year }}{% if posts[0].series %} · a {{ posts[0].series }} series{% endif %}</h2>
