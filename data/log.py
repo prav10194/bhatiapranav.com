@@ -10,7 +10,8 @@ import re
 from pathlib import Path
 
 import frontmatter
-import markdown
+
+from . import render
 
 LOG_DIR = Path(__file__).resolve().parent.parent / "content" / "log"
 
@@ -31,10 +32,7 @@ def load_posts():
             "date": str(doc["date"]),
             "title": doc["title"],
             "summary": doc.get("summary", ""),
-            "html": markdown.markdown(
-                doc.content,
-                extensions=["fenced_code", "tables"],
-            ),
+            "html": render.to_html(doc.content),
         })
 
     posts.sort(key=lambda p: p["date"], reverse=True)

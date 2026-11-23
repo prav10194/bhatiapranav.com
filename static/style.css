@@ -486,3 +486,162 @@ footer {
 }
 
 .prose img { max-width: 100%; }
+
+/* ───────────────────────────────────────────────────────────────
+   terminal blocks — learning log
+   palette first, then one rule per block type
+   ─────────────────────────────────────────────────────────────── */
+
+:root {
+  --t-red:     #ff7b72;
+  --t-green:   #4ade80;
+  --t-yellow:  #e3b341;
+  --t-blue:    #79c0ff;
+  --t-magenta: #d2a8ff;
+  --t-cyan:    #56d4dd;
+  --t-orange:  #ffa657;
+  --t-grey:    #7d8590;
+
+  --blk-bg:    #0d1117;
+  --blk-rule:  #21262d;
+}
+
+/* syntax highlighting ------------------------------------------------ */
+
+.prose pre.hl { background: none; }
+.hl .k, .hl .kd, .hl .kn, .hl .kc, .hl .kr, .hl .kt { color: var(--t-red); }
+.hl .nf, .hl .nd                                     { color: var(--t-magenta); }
+.hl .nc, .hl .nn, .hl .ne                            { color: var(--t-orange); }
+.hl .s, .hl .s1, .hl .s2, .hl .sb, .hl .sd, .hl .se  { color: var(--t-cyan); }
+.hl .mi, .hl .mf, .hl .mh, .hl .il, .hl .m           { color: var(--t-blue); }
+.hl .c, .hl .c1, .hl .cm, .hl .cs                    { color: var(--t-grey); font-style: italic; }
+.hl .o, .hl .ow, .hl .p                              { color: var(--text-2); }
+.hl .nb, .hl .bp                                     { color: var(--t-yellow); }
+.hl .nt                                              { color: var(--t-green); }
+.hl .na                                              { color: var(--t-blue); }
+.hl .err                                             { color: var(--t-red); }
+
+/* block shell -------------------------------------------------------- */
+
+.prose .blk {
+  margin: 22px 0 0;
+  border: 1px solid var(--blk-rule);
+  border-radius: 6px;
+  background: var(--blk-bg);
+  overflow: hidden;
+}
+
+.prose .blk pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  padding: 12px 14px;
+  overflow-x: auto;
+  font: 13px/1.65 var(--mono);
+}
+
+.prose .blk pre code { background: none; padding: 0; font-size: inherit; }
+
+.blk-bar {
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--blk-rule);
+  font: 11px/1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: var(--t-grey);
+  background: #010409;
+}
+
+.blk-bar::before { content: "› "; color: var(--t-green); }
+
+.blk-cap {
+  padding: 8px 14px;
+  border-top: 1px solid var(--blk-rule);
+  font: 12px/1.5 var(--mono);
+  color: var(--muted);
+  background: #010409;
+}
+
+/* console ------------------------------------------------------------ */
+
+.blk-console          { border-color: #1f2a24; }
+.blk-console .c-prompt{ color: var(--t-green); font-weight: 600; }
+.blk-console .c-cmd   { color: var(--text); }
+.blk-console .c-out   { color: var(--t-grey); }
+.blk-console .c-comment { color: var(--faint); font-style: italic; }
+
+/* diagrams and ascii charts ------------------------------------------ */
+
+.blk-diagram, .blk-chart { border-style: dashed; }
+.blk-diagram pre, .blk-chart pre { color: var(--text-2); line-height: 1.45; }
+.blk-chart pre { color: var(--t-cyan); }
+
+/* callouts ----------------------------------------------------------- */
+
+.prose .callout {
+  margin: 22px 0 0;
+  padding: 14px 16px 14px 18px;
+  border-left: 2px solid var(--t-grey);
+  background: #0e1117;
+  border-radius: 0 6px 6px 0;
+}
+
+.callout-tag {
+  font: 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--t-grey);
+  margin-bottom: 8px;
+}
+
+.callout-tag::before { content: "// "; opacity: 0.6; }
+
+.callout-body > *:first-child { margin-top: 0; }
+.callout-body > *:last-child  { margin-bottom: 0; }
+.callout-body p { margin: 10px 0 0; font-size: 0.97rem; }
+
+.callout-measured              { border-left-color: var(--t-green); }
+.callout-measured .callout-tag { color: var(--t-green); }
+.callout-warn                  { border-left-color: var(--t-orange); }
+.callout-warn .callout-tag     { color: var(--t-orange); }
+.callout-note                  { border-left-color: var(--t-blue); }
+.callout-note .callout-tag     { color: var(--t-blue); }
+
+/* key number --------------------------------------------------------- */
+
+.prose .keyblock {
+  margin: 26px 0 0;
+  padding: 20px 18px;
+  border: 1px solid var(--blk-rule);
+  border-radius: 6px;
+  background: linear-gradient(180deg, #0d1117, #0a0d12);
+  text-align: center;
+}
+
+.key-tag {
+  font: 11px/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--t-grey);
+  margin-bottom: 12px;
+}
+
+.key-num {
+  font: 600 2.4rem/1 var(--mono);
+  letter-spacing: -0.02em;
+  color: var(--t-green);
+}
+
+.key-cap { margin-top: 10px; }
+.key-cap p { margin: 0; font-size: 0.93rem; color: var(--text-2); }
+
+/* tables get a little more structure in log posts --------------------- */
+
+.prose table { font-size: 0.92rem; }
+.prose tbody tr:hover { background: #0e1117; }
+
+@media (max-width: 640px) {
+  .prose .blk pre { font-size: 12px; }
+  .key-num { font-size: 1.9rem; }
+}
