@@ -19,7 +19,6 @@ def inject_globals():
             ("home", "home", "h"),
             ("projects", "projects", "p"),
             ("writing", "writing", "w"),
-            ("about", "about", "a"),
             ("lab", "lab", "l"),
             ("books", "books", "b"),
             ("resume", "resume", "r"),
@@ -57,11 +56,6 @@ def post(slug):
     if match is None:
         abort(404)
     return render_template("post.html", post=match)
-
-@app.route("/about/")
-def about():
-    return render_template("about.html")
-
 
 @app.route("/lab/")
 def lab():

@@ -57,10 +57,4 @@
     <p class="sub">{{ c.CERTIFICATIONS }}</p>
   </section>
 
-  <section class="contact">
-    <a href="mailto:{{ c.EMAIL }}">{{ c.EMAIL }}</a>
-    {% for link in c.LINKS %}
-      <a href="{{ link.url }}">{{ link.label }}</a>
-    {% endfor %}
-  </section>
 {% endblock %}

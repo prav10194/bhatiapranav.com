@@ -4,10 +4,16 @@ date: 2026-11-23
 summary: Three numbers multiplied together, worked by hand on five documents — and the two places the arithmetic quietly stops being what you think it is.
 ---
 
-I have quoted the BM25 formula in interviews without being able to say why
-there is a `2.2` sitting in front of it. This is me fixing that. The five
-documents below are invented so the arithmetic stays readable. The numbers
-pulled from a real cluster are labelled as measured.
+BM25 fits on one line. Three numbers multiplied together, and every term in it
+is doing something specific — including the constant in front, which is not
+what most explanations suggest.
+
+Worked through below on five documents, by hand. Two of the three inputs turn
+out not to come from where they appear to come from, and that is where the
+useful part is.
+
+The five documents are invented so the arithmetic stays readable. Numbers taken
+from a real cluster are labelled as measured.
 
 ## Five documents, one shard
 
@@ -267,7 +273,7 @@ glaring precisely in the small test index where people first meet it.
 go away, at the cost of an extra round trip.
 ```
 
-## What I would keep
+## What to keep
 
 ```text six lines
 score = boost × idf × tf

@@ -10,11 +10,7 @@
 
   {% for status, items in grouped %}
     <section>
-      <h2 class="label">
-        {% if status == 'reading' %}<span class="dot" aria-hidden="true"></span>
-        {% else %}<span class="dot is-done" aria-hidden="true"></span>{% endif %}
-        {{ 'reading now' if status == 'reading' else status }}
-      </h2>
+      <h2 class="label{% if status == 'reading' %} is-live{% else %} is-done{% endif %}">{{ 'reading now' if status == 'reading' else status }}</h2>
       <div class="shelf">
         {% for book in items %}
           <article class="book">

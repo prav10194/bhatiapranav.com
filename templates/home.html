@@ -6,10 +6,25 @@
     <p class="sub">{{ c.INTRO_SUB }}</p>
   </section>
 
-  <section class="contact">
-    <a href="mailto:{{ c.EMAIL }}">{{ c.EMAIL }}</a>
-    {% for link in c.LINKS %}
-      <a href="{{ link.url }}">{{ link.label }}</a>
-    {% endfor %}
+  <section>
+    <h2 class="label is-live">now</h2>
+    <p>{{ c.NOW }}</p>
+  </section>
+
+  <section class="intro">
+    <p>{{ c.STORY_LEAD }}</p>
+    <p class="sub">{{ c.STORY_SUB }}</p>
+  </section>
+
+  <section>
+    <h2 class="label">how i got here</h2>
+    <ul class="rows">
+      {% for item in c.TIMELINE %}
+        <li class="row is-timeline{% if item.muted %} is-dim{% endif %}">
+          <span class="years{% if item.current %} is-accent{% endif %}">{{ item.years }}</span>
+          <p class="row-sub"><strong>{{ item.title }}</strong> {{ item.text }}</p>
+        </li>
+      {% endfor %}
+    </ul>
   </section>
 {% endblock %}

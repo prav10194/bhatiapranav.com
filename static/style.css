@@ -1,7 +1,9 @@
 /* bhatiapranav.com — design tokens from SITE-BLUEPRINT.md §4.
-   Single dark theme, deliberately. Two accents, each with one job:
+   Single dark theme, deliberately. The accents are the same terminal palette
+   the learning-log blocks use, so the chrome and the articles agree:
      --accent    green — live right now: reading, shipping, the current role
-     --accent-2  blue  — finished, or something you can act on (links, focus) */
+     --accent-2  blue  — finished, or something you can act on (links, focus)
+     --accent-3  cyan  — the terminal furniture: // labels, nav keys */
 
 :root {
   --bg:        #0a0a0a;
@@ -12,13 +14,14 @@
   --rule:      #27272a;
   --link-rule: #3f3f46;
   --accent:    #4ade80;   /* live */
-  --accent-2:  #60a5fa;   /* done, and interactive */
+  --accent-2:  #79c0ff;   /* done, and interactive */
+  --accent-3:  #56d4dd;   /* terminal furniture */
 
   --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --col:  640px;
-  --rail: 760px;   /* the masthead runs a little wider than the text */
+  --rail: 800px;   /* the masthead runs a little wider than the text */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -76,8 +79,8 @@ nav {
 .nav-link.is-current { color: var(--text); }
 
 .key { color: var(--faint); }
-.nav-link:hover .key { color: var(--accent-2); }
-.nav-link.is-current .key { color: var(--muted); }
+.nav-link:hover .key       { color: var(--accent-3); }
+.nav-link.is-current .key  { color: var(--accent-3); }
 
 /* --- structure ------------------------------------------------------------ */
 
@@ -164,6 +167,15 @@ p { margin: 0; }
   font-weight: 400;
   color: var(--muted);
 }
+
+/* the comment marker carries the state, so no separate dot is needed */
+.label::before {
+  content: "// ";
+  color: var(--accent-3);
+  opacity: 0.55;
+}
+.label.is-live::before { color: var(--accent);   opacity: 1; }
+.label.is-done::before { color: var(--accent-2); opacity: 1; }
 
 .dot {
   width: 7px;
@@ -644,4 +656,38 @@ footer {
 @media (max-width: 640px) {
   .prose .blk pre { font-size: 12px; }
   .key-num { font-size: 1.9rem; }
+}
+
+/* --- masthead links and the footer cursor -------------------------------- */
+
+.elsewhere {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.elsewhere a {
+  color: var(--muted);
+  border-bottom-color: transparent;
+}
+.elsewhere a:hover {
+  color: var(--accent-2);
+  border-bottom-color: var(--accent-2);
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 0.35em;
+  vertical-align: -0.15em;
+  background: var(--accent);
+  animation: blink 1.2s steps(1, end) infinite;
+}
+@keyframes blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; opacity: 0.8; }
 }

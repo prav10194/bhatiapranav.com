@@ -8,13 +8,32 @@ NOW = (
 )
 
 INTRO_LEAD = (
-    "i'm a senior software engineer at ibm in dallas. i build enterprise web "
-    "platforms in typescript, react and java."
+    "i'm a technical architect at ibm, in austin. i build search and "
+    "retrieval systems \u2014 elasticsearch, kibana, rag \u2014 inside large "
+    "government and enterprise platforms."
 )
 
 INTRO_SUB = (
-    "nine years in. currently teaching myself local-first ai — flask, "
-    "langchain, ollama — and shipping small apps in the open as i go."
+    "nine years advising clients across the us, uk and canada, in federal and "
+    "state government, healthcare, financial services, retail and energy. i "
+    "still write the code."
+)
+
+# the arc, for the home page
+STORY_LEAD = (
+    "i started in conversational ai \u2014 a watson chatbot for a national "
+    "grocer that had to work the same on the web, in an app, on alexa and on "
+    "google home. then three years in london doing secdevops on openshift, "
+    "where \"it works on my machine\" stopped being an acceptable sentence. "
+    "since 2022 i've been architecting large public-sector platforms, and "
+    "lately that has meant search."
+)
+
+STORY_SUB = (
+    "the 2018 chatbot work is why the current llm work feels like a return, "
+    "not a new field. i'm learning it local-first on purpose \u2014 a model on "
+    "my own laptop, my own notes as the corpus \u2014 because that's the "
+    "version that respects the data."
 )
 
 # --- projects --------------------------------------------------------------
@@ -151,35 +170,20 @@ BOOK_STATUS_ORDER = ["reading", "read"]
 
 MEDIUM_URL = "https://prav10194.medium.com"
 
-# --- about -----------------------------------------------------------------
-ABOUT_LEAD = (
-    "i started in conversational ai — a watson chatbot for a national grocer "
-    "that had to work the same on the web, in an app, on alexa and on google "
-    "home. then three years in london doing secdevops on openshift, where "
-    "\"it works on my machine\" stopped being an acceptable sentence. since "
-    "2022 i've been back in dallas building large public-sector web platforms."
-)
-
-ABOUT_SUB = (
-    "the 2018 chatbot work is why the current llm work feels like a return, "
-    "not a new field. i'm learning it local-first on purpose — a model on my "
-    "own laptop, my own notes as the corpus — because that's the version that "
-    "respects the data."
-)
-
+# --- experience ------------------------------------------------------------
 TIMELINE = [
-    {"years": "2022 —", "current": True,
-     "title": "senior software engineer, ibm — dallas.",
-     "text": "enterprise web platforms in typescript, react and java; agentic ai pilots for public-sector intake."},
-    {"years": "2019 – 22",
-     "title": "secdevops engineer, ibm uk — london.",
-     "text": "500+ deployments on red hat openshift; security tooling embedded into ci/cd for a uk bank's engineering teams."},
-    {"years": "2017 – 19",
-     "title": "full stack developer, ibm — dallas.",
-     "text": "watson nlp chatbot across web, mobile, alexa, google home and messenger; react + node + cloudant behind it. presented at nrf in new york."},
-    {"years": "2016 – 18",
+    {"years": "2022 \u2014", "current": True,
+     "title": "technical architect, ibm \u2014 austin.",
+     "text": "retrieval-augmented incident diagnosis over application logs in elasticsearch; a state vehicle-registration platform moved off a platform-native event bus and onto kafka; fl wins, a florida workforce portal consolidating 42 programs into one intake flow. led four offshore engineers for two years."},
+    {"years": "2019 \u2013 22",
+     "title": "secdevops engineer, ibm uk \u2014 london.",
+     "text": "the elastic stack monitoring 500+ containerised deployments across three enterprise clients, with react and node dashboards over the same signals; devsecops practices embedded into ci/cd with lloyds bank security and infosec."},
+    {"years": "2017 \u2013 19",
+     "title": "advisory it specialist, ibm \u2014 dallas.",
+     "text": "watson nlp product search over a 10,000-sku catalogue for a national grocer, across web, mobile, alexa, google home and messenger; react + node + cloudant behind it. presented it at nrf in new york."},
+    {"years": "2016 \u2013 18",
      "title": "ms computer science, ut dallas.",
-     "text": "nlp coursework produced nlp-project."},
+     "text": "major in data science. nlp coursework produced nlp-project."},
     {"years": "2014", "muted": True,
      "title": "first commit on github.",
      "text": "co-authored two undergraduate papers, on binrank search and decision-tree classifiers."},
@@ -193,13 +197,15 @@ HACKATHONS = [
 ]
 
 CERTIFICATIONS = (
-    "aws solutions architect (associate) · aws cloud practitioner · "
-    "salesforce platform developer · salesforce mulesoft developer · "
-    "salesforce ai associate · salesforce ux designer · "
-    "microsoft power platform developer associate"
+    "aws solutions architect \u2013 associate \u00b7 aws cloud practitioner \u00b7 "
+    "salesforce mulesoft developer \u00b7 salesforce omnistudio developer \u00b7 "
+    "salesforce cpq specialist \u00b7 salesforce ai associate \u00b7 "
+    "salesforce ux designer \u00b7 microsoft power platform developer associate"
 )
 
-EDUCATION = "ms computer science, university of texas at dallas"
+EDUCATION = (
+    "ms computer science, major in data science \u2014 university of texas at dallas"
+)
 
 # --- lab -------------------------------------------------------------------
 LAB = [
@@ -214,25 +220,24 @@ LAB = [
 RESUME_PDF = ""
 
 RESUME_LEAD = (
-    "nine years at ibm, across three cities and three eras of the work: "
-    "conversational ai, then secdevops, now large public-sector web platforms "
-    "with agentic ai pilots bolted to the side of them."
+    "technical architect with nine years advising enterprise clients across "
+    "the us, uk and canada \u2014 federal and state government, healthcare, "
+    "financial services, retail and energy. i lead engagements from discovery "
+    "through production rollout and client enablement, and stay hands-on."
 )
 
 SKILLS = [
-    ("languages", "typescript · javascript · python · java · apex · sql"),
-    ("front end", "react · lightning web components · node · omnistudio"),
-    ("platform", "salesforce · mulesoft · red hat openshift · docker · kubernetes"),
-    ("ci / cd", "jenkins · tekton · github actions · sonarqube"),
-    ("cloud", "aws · ibm cloud · google cloud · firebase"),
-    ("ai", "watson assistant · langchain · ollama · retrieval + tool calling"),
+    ("search & ai", "elasticsearch \u00b7 kibana \u00b7 retrieval-augmented generation \u00b7 nlp search \u00b7 log ingestion and alerting rules"),
+    ("languages & data", "python \u00b7 flask \u00b7 javascript \u00b7 node \u00b7 sql server \u00b7 mongodb \u00b7 java"),
+    ("cloud & devops", "aws \u00b7 linux \u00b7 docker \u00b7 kubernetes \u00b7 terraform \u00b7 ci/cd \u00b7 red hat openshift"),
+    ("delivery", "discovery workshops \u00b7 solution architecture \u00b7 design and code review \u00b7 client enablement \u00b7 mentoring \u00b7 agile"),
 ]
 
-EMAIL = "pranav@bhatiapranav.com"
+EMAIL = "pranav.bhatia@hotmail.com"
 LINKS = [
     {"label": "github", "url": "https://github.com/prav10194"},
     {"label": "linkedin", "url": "https://linkedin.com/in/pranav-bhatia"},
     {"label": "medium", "url": MEDIUM_URL},
 ]
-LOCATION = "dallas, tx"
+LOCATION = "austin, tx"
 YEAR = 2026

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}pranav bhatia{% endblock %}</title>
-  <meta name="description" content="{% block description %}pranav bhatia — senior software engineer in dallas, texas.{% endblock %}">
+  <meta name="description" content="{% block description %}pranav bhatia — technical architect at ibm in austin, texas.{% endblock %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -14,6 +14,10 @@
 <body>
   <div class="masthead">
     <div class="topbar">
+      <p class="elsewhere">
+        <a href="mailto:{{ c.EMAIL }}">{{ c.EMAIL }}</a>
+        {% for link in c.LINKS %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}
+      </p>
       <p class="ident"><span class="me" data-cat-perch>pranav bhatia</span> · {{ c.LOCATION }} ·
         <time class="clock" data-clock>--:--</time></p>
     </div>
@@ -36,7 +40,7 @@
 
     <footer>
       <span>&copy; {{ c.YEAR }} pranav bhatia</span>
-      <span data-cat-perch>{{ c.LOCATION }}</span>
+      <span>{{ c.LOCATION }}<span class="cursor" aria-hidden="true"></span></span>
     </footer>
 
   </div>
